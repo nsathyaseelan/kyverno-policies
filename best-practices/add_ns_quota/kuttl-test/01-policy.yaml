@@ -1,7 +1,7 @@
 apiVersion: kuttl.dev/v1beta1
 kind: TestStep
 apply:
-- resource.yaml
+- ./add_ns_quota.yaml
 assert:
-- generatedResource.yaml
+- policy-assert.yaml
 unitTest: false
