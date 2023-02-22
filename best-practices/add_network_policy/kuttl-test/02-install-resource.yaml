@@ -1,7 +1,7 @@
 apiVersion: kuttl.dev/v1beta1
 kind: TestStep
 apply:
-- ./resource.yaml
+- ../resource.yaml
 assert:
-- ./generatedResource.yaml
+- ../generatedResource.yaml
 unitTest: false
