@@ -23,7 +23,7 @@ jobs:
       - name: Step 1 - Echo out a GitHub Actions Secret to the logs
         run: |
           echo "The GitHub Action Secret will be masked:  "
-          echo ${{ secrets.SECRET_TOKEN }}
+          echo ${{ secrets.N4K_LICENSE }}
           echo "Trick to echo GitHub Actions Secret:  "
       - name: Install kyverno
         run: make kind-deploy-kyverno
