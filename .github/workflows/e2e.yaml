@@ -24,5 +24,7 @@ jobs:
         run: make kind-deploy-kyverno
       - name: Wait for Kyverno to start
         run: sleep 60
+      - name: check kyverno
+        run: kubectl get po -A
       - name: Test with kuttl
         run: make test-kuttl
