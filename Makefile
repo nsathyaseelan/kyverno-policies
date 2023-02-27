@@ -43,22 +43,28 @@ test-kuttl: $(KUTTL) ## Run kuttl tests
 	@echo Running kuttl tests... >&2
 	@$(KUTTL) test --config kuttl-test.yaml
 
-.PHONY: kyverno-cli-test
-kyverno-cli-test: ## Run kyverno cli tests
-	@echo Running kyverno cli tests... >&2
-	go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
+.PHONY: kyverno-cli
+kyverno-cli: $(KUTTL) ## Run kuttl tests
+	@echo Running kyverno cli... >&2
+	@$ go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
 
 ## Create kind cluster
 .PHONY: kind-create-cluster
 kind-create-cluster: $(KIND) 
 	@echo Create kind cluster... >&2
 	@$(KIND) create cluster --name $(KIND_NAME) 
-	
+
 ## Delete kind cluster
 .PHONY: kind-delete-cluster
 kind-delete-cluster: $(KIND) 
 	@echo Delete kind cluster... >&2
 	@$(KIND) delete cluster --name $(KIND_NAME)
+
+.PHONY: kind-deploy-kyverno-operator
+kind-deploy-kyverno-operator: $(HELM)
+	@echo Install kyverno chart... >&2
+	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts 
+	@$(HELM) install kyverno-operator --namespace nirmata-kyverno-operator --create-namespace nirmata/kyverno-operator --set imagePullSecret.create=false
 
 .PHONY: kind-deploy-kyverno
 kind-deploy-kyverno: $(HELM) 
@@ -66,3 +72,5 @@ kind-deploy-kyverno: $(HELM)
 	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts
 	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=c2yPkGGVtnbubN8EozSDq8ioQQ7wSffSf6DLV+mv2A794EHC3aHrGmRlZe4MBoC0FHw4x17Wyewgezjy+ldmpLzlxusJFEUqL6dPpJbClVPPWevJGWWJBIaOtCFCbiQfxHxmAPMfY8h+Xuwd629OAK1AzOdzdIljWIIYFPwyysnJTvuP3tw6dFtUCA1Cd34/iTanxjqvHPk/7WGwc67vkv0CWRJANdzT+xRSid9g1mqjrY8OIgp0HsQzIiHpDUKk7aA4QpUQxhkS5Jx5ckuPwpnUtKNed93M7g+Rz9aHJ1g=
 
+.PHONY: kind-deploy-all
+kind-deploy-all: | kind-deploy-kyverno-operator kind-deploy-kyverno kind-deploy-kyverno-policies
