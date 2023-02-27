@@ -46,7 +46,7 @@ test-kuttl: $(KUTTL) ## Run kuttl tests
 .PHONY: kyverno-cli
 kyverno-cli: $(KUTTL) ## Run kuttl tests
 	@echo Running kyverno cli... >&2
-	@$ go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
+	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
 
 ## Create kind cluster
 .PHONY: kind-create-cluster
