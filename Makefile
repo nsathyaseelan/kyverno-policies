@@ -43,9 +43,9 @@ test-kuttl: $(KUTTL) ## Run kuttl tests
 	@echo Running kuttl tests... >&2
 	@$(KUTTL) test --config kuttl-test.yaml
 
-.PHONY: kyverno-cli
-kyverno-cli: $(KUTTL) ## Run kuttl tests
-	@echo Running kyverno cli... >&2
+.PHONY: test-cli
+test-cli: $(KUTTL) ## Run kuttl tests
+	@echo Running kuttl clis... >&2
 	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
 
 ## Create kind cluster
