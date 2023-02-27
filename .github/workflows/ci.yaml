@@ -24,10 +24,10 @@ jobs:
           # The target branch of a pull request or the branch/tag of a push
           ref: ${{ github.base_ref || github.ref_name }}
 
-      # - name: Set up Go 
-      #   uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568
-      #   with:
-      #     go-version: 1.19
+      - name: Set up Go 
+        uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568
+        with:
+          go-version: 1.19
 
       - name: Run Kyverno CLI tests
         run: make test-cli
