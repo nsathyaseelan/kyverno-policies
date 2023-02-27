@@ -31,4 +31,4 @@ jobs:
 
       - name: Run Kyverno CLI tests
         run: make kyverno-cli-test
-        #working-directory: kyverno
+        working-directory: kyverno-policies
