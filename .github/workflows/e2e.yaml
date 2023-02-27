@@ -19,7 +19,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Prepare environment
-        run: make kind-create-cluster 
+        run: make kind-create-cluster
+      - name: Step 1 - Echo out a GitHub Actions Secret to the logs
+        run: |
+          echo "The GitHub Action Secret will be masked:  "
+          echo ${{ secrets.SECRET_TOKEN }}
+          echo "Trick to echo GitHub Actions Secret:  "
       - name: Install kyverno
         run: make kind-deploy-kyverno
       - name: Wait for Kyverno to start
