@@ -59,4 +59,4 @@ kind-delete-cluster: $(KIND)
 kind-deploy-kyverno: $(HELM) 
 	@echo Install kyverno chart... >&2
 	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts
-	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=${{ secrets.N4K_LICENSE }}
+	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=c2yPkGGVtnbubN8EozSDq8ioQQ7wSffSf6DLV+mv2A794EHC3aHrGmRlZe4MBoC0FHw4x17Wyewgezjy+ldmpLzlxusJFEUqL6dPpJbClVPPWevJGWWJBIaOtCFCbiQfxHxmAPMfY8h+Xuwd629OAK1AzOdzdIljWIIYFPwyysnJTvuP3tw6dFtUCA1Cd34/iTanxjqvHPk/7WGwc67vkv0CWRJANdzT+xRSid9g1mqjrY8OIgp0HsQzIiHpDUKk7aA4QpUQxhkS5Jx5ckuPwpnUtKNed93M7g+Rz9aHJ1g=
