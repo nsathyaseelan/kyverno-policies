@@ -65,4 +65,4 @@ kind-deploy-kyverno: $(HELM)
 kyverno-cli-test:
 	@echo Install kyverno chart... >&2
 	@git clone https://github.com/nirmata/kyverno.git
-	@go run ./kyverno/cmd/cli/kubectl-kyverno test ../kyverno-policies
+	@go run ./kyverno/cmd/cli/kubectl-kyverno test kyverno-policies
