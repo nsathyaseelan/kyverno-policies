@@ -43,22 +43,22 @@ test-kuttl: $(KUTTL) ## Run kuttl tests
 	@echo Running kuttl tests... >&2
 	@$(KUTTL) test --config kuttl-test.yaml
 
+.PHONY: test-cli
+test-cli: $(KUTTL) ## Run kuttl tests
+	@echo Running kuttl clis... >&2
+	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
+
 ## Create kind cluster
 .PHONY: kind-create-cluster
 kind-create-cluster: $(KIND) 
 	@echo Create kind cluster... >&2
 	@$(KIND) create cluster --name $(KIND_NAME) 
+	
 ## Delete kind cluster
 .PHONY: kind-delete-cluster
 kind-delete-cluster: $(KIND) 
 	@echo Delete kind cluster... >&2
 	@$(KIND) delete cluster --name $(KIND_NAME)
-
-.PHONY: kind-deploy-kyverno-operator
-kind-deploy-kyverno-operator: $(HELM)
-	@echo Install kyverno chart... >&2
-	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts 
-	@$(HELM) install kyverno-operator --namespace nirmata-kyverno-operator --create-namespace nirmata/kyverno-operator --set imagePullSecret.create=false
 
 .PHONY: kind-deploy-kyverno
 kind-deploy-kyverno: $(HELM) 

@@ -1,4 +1,4 @@
-name: Policy Test
+name: Kyverno Test
 
 on:
   push:
@@ -19,10 +19,10 @@ jobs:
         with:
           path: kyverno-policies
 
-      - name: Clone Kyverno
+      - name: Clone enterprise Kyverno
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
         with:
-          repository: nsathyaseelan/kyverno
+          repository: nirmata/kyverno
           path: kyverno
           # The target branch of a pull request or the branch/tag of a push
           ref: ${{ github.base_ref || github.ref_name }}
@@ -33,5 +33,5 @@ jobs:
           go-version: 1.18
 
       - name: Test Policy
-        run: go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
+        run: make test-cli
         working-directory: kyverno
