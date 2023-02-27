@@ -44,7 +44,7 @@ test-kuttl: $(KUTTL) ## Run kuttl tests
 	@$(KUTTL) test --config kuttl-test.yaml
 
 .PHONY: kyverno-cli-test
-kyverno-cli-test: ## Run kyverno cli tests
+kyverno-cli-test: $(KUTTL) ## Run kyverno cli tests
 	@echo Running kyverno cli tests... >&2
 	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
 
