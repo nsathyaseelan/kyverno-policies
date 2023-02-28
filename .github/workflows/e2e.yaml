@@ -29,7 +29,7 @@ jobs:
           DEVOPS: ${{ secrets.N4K_LICENSE }}
       - name: Install kyverno
         run: |
-          make kind-deploy-kyverno
+          make kind-deploy-kyverno $DEVOPS
           export LICENSE_KEY="$DEVOPS"
         env:
           DEVOPS: ${{ secrets.N4K_LICENSE }}      

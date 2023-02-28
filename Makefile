@@ -4,6 +4,7 @@ K8S_VERSION          ?= $(shell kubectl version --short | grep -i server | cut -
 KIND_IMAGE           ?= kindest/node:v1.25.2
 KIND_NAME            ?= kind
 USE_CONFIG           ?= standard
+LICENSE_KEY          := $1
 
 TOOLS_DIR                          := $(PWD)/.tools
 KIND                               := $(TOOLS_DIR)/kind
@@ -58,7 +59,7 @@ kind-delete-cluster: $(KIND)
 .PHONY: kind-deploy-kyverno
 kind-deploy-kyverno: $(HELM) 
 	@echo Install kyverno chart... >&2
-	@echo "$LICENSE_KEY" >&2
+	@echo "$(LICENSE_KEY)" >&2
 	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts
 	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=$(LICENSE_KEY)
 .PHONY: wait-for-kyverno
