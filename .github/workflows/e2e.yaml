@@ -30,7 +30,7 @@ jobs:
       - name: Install kyverno
         run: |
           make kind-deploy-kyverno
-          export LICENSE_KEY=${{ DEVOPS }}
+          export LICENSE_KEY="$DEVOPS"
         env:
           DEVOPS: ${{ secrets.N4K_LICENSE }}      
       - name: Wait for Kyverno to start
