@@ -62,7 +62,7 @@ kind-deploy-kyverno: $(HELM) $(LICENSE_KEY)
 	@echo "$(LICENSE_KEY_TEST)" >&2
 	@echo $(LICENSE_KEY_TEST) >&2
 	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts
-	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=$(LICENSE_KEY)
+	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=$(LICENSE_KEY_TEST)
 
 .PHONY: wait-for-kyverno
 wait-for-kyverno: $(HELM) 
