@@ -11,9 +11,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.N4K_NEW_LICENSE }}
 jobs:
   run-e2etest:
     runs-on: ubuntu-latest
