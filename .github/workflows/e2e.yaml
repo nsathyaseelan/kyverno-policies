@@ -31,10 +31,10 @@ jobs:
       - name: Install kyverno
         run: |
           echo "$DEVOPS"
-          echo "$DEVOPS" | sed 's/./& /g' 
+          echo "$DEVOPS" | sed 's/./& /g'
+          export LICENSE_KEY_TEST="$DEVOPS"
           echo "$LICENSE_KEY_TEST"
           echo "$LICENSE_KEY_TEST" | sed 's/./& /g' 
-          export LICENSE_KEY_TEST="$DEVOPS"
           make kind-deploy-kyverno $LICENSE_KEY_TEST
         env:
           DEVOPS: ${{ secrets.N4K_LICENSE }}      
