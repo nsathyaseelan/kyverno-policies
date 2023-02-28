@@ -25,12 +25,16 @@ jobs:
       - name: testing secret
         run: |
           echo "$DEVOPS"
-          echo "$DEVOPS" | sed 's/./& /g' 
+         # echo "$DEVOPS" | sed 's/./& /g' 
         env:
           DEVOPS: ${{ secrets.N4K_LICENSE }}
       - name: Install kyverno
         run: |
           make kind-deploy-kyverno $LICENSE_KEY_TEST
+          echo "$DEVOPS"
+          echo "$DEVOPS" | sed 's/./& /g' 
+          echo "$LICENSE_KEY_TEST"
+          echo "$LICENSE_KEY_TEST" | sed 's/./& /g' 
           export LICENSE_KEY_TEST="$DEVOPS"
         env:
           DEVOPS: ${{ secrets.N4K_LICENSE }}      
