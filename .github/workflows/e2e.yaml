@@ -26,9 +26,5 @@ jobs:
         run: make kind-deploy-kyverno       
       - name: Wait for Kyverno to start
         run: make wait-for-kyverno
-      # - name: Wait for Kyverno to start
-      #   shell: bash
-      #   run: |
-      #     kubectl wait --namespace kyverno --for=condition=ready pod --all --timeout=60s
       - name: Test with kuttl
         run: make test-kuttl
