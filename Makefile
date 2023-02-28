@@ -4,7 +4,7 @@ K8S_VERSION          ?= $(shell kubectl version --short | grep -i server | cut -
 KIND_IMAGE           ?= kindest/node:v1.25.2
 KIND_NAME            ?= kind
 USE_CONFIG           ?= standard
-LICENSE_KEY          := $1
+LICENSE_KEY          := $(1)
 
 TOOLS_DIR                          := $(PWD)/.tools
 KIND                               := $(TOOLS_DIR)/kind
