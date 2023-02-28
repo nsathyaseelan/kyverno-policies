@@ -57,11 +57,12 @@ kind-delete-cluster: $(KIND)
 	@$(KIND) delete cluster --name $(KIND_NAME)
 
 .PHONY: kind-deploy-kyverno
-kind-deploy-kyverno: $(HELM) 
+kind-deploy-kyverno: $(HELM) $(LICENSE_KEY)
 	@echo Install kyverno chart... >&2
-	@echo "$(1)" >&2
+	@echo "$(LICENSE_KEY)" >&2
 	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts
 	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=$(LICENSE_KEY)
+
 .PHONY: wait-for-kyverno
 wait-for-kyverno: $(HELM) 
 	@echo wait kyverno pod status installation... >&2
