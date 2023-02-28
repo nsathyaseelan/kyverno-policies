@@ -22,22 +22,18 @@ jobs:
         uses: actions/checkout@v3
       - name: Prepare environment
         run: make kind-create-cluster
-      - name: testing secret
-        run: |
-          echo "$DEVOPS"
-         # echo "$DEVOPS" | sed 's/./& /g' 
-        env:
-          DEVOPS: ${{ secrets.N4K_LICENSE }}
+      # - name: testing secret
+      #   run: |
+      #     echo "$DEVOPS"
+      #    # echo "$DEVOPS" | sed 's/./& /g' 
+      #   env:
+      #     DEVOPS: ${{ secrets.N4K_LICENSE }}
       - name: Install kyverno
         run: |
-          echo "$DEVOPS"
-          echo "$DEVOPS" | sed 's/./& /g'
-          export LICENSE_KEY_TEST="$DEVOPS"
-          echo "$LICENSE_KEY_TEST"
-          echo "$LICENSE_KEY_TEST" | sed 's/./& /g' 
-          make kind-deploy-kyverno $LICENSE_KEY_TEST
+          export N4K_LICENSE_KEY="$LICENSE_KEY"
+          make kind-deploy-kyverno
         env:
-          DEVOPS: ${{ secrets.N4K_LICENSE }}      
+          LICENSE_KEY: ${{ secrets.N4K_LICENSE }}      
       - name: Wait for Kyverno to start
         run: make wait-for-kyverno
       - name: Test with kuttl
