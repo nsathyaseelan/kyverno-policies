@@ -11,7 +11,9 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-  
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.N4K_NEW_LICENSE } 
 jobs:
   run-e2etest:
     runs-on: ubuntu-latest
@@ -21,10 +23,7 @@ jobs:
       - name: Prepare environment
         run: make kind-create-cluster
       - name: Install kyverno
-        run: make kind-deploy-kyverno
-        with: # Set the secret as an input
-          super_secret: ${{ secrets.N4K_LICENSE }}
-        
+        run: make kind-deploy-kyverno       
       - name: Wait for Kyverno to start
         run: sleep 60
       - name: check kyverno
