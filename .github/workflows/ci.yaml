@@ -31,4 +31,4 @@ jobs:
 
       - name: Test Policy
         run: make cli-kyverno #go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
-        working-directory: kyverno
+        working-directory: kyverno-policies
