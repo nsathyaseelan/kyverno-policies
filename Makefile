@@ -62,6 +62,6 @@ kind-deploy-kyverno: $(HELM)
 	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=$(N4K_LICENSE_KEY)
 
 .PHONY: wait-for-kyverno
-wait-for-kyverno: $(HELM) 
+wait-for-kyverno: 
 	@echo wait kyverno pod status installation... >&2
 	@kubectl wait --namespace kyverno --for=condition=ready pod --all --timeout=60s
