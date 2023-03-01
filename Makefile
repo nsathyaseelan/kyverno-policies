@@ -69,4 +69,4 @@ wait-for-kyverno: $(HELM)
 .PHONY: cli-kyverno
 cli-kyverno: $(HELM) 
 	@echo validate cli test... >&2
-	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
+	@go run ../kyverno/cmd/cli/kubectl-kyverno test /kyverno-policies
