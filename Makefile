@@ -69,7 +69,6 @@ wait-for-kyverno: $(HELM)
 .PHONY: cli-kyverno
 cli-kyverno: $(HELM) 
 	@echo validate cli test... >&2
+	@git clone https://github.com/nirmata/kyverno.git
 	@ls
-	@cd ..
-	@ls
-	@go run ../kyverno/cmd/cli/kubectl-kyverno test /kyverno-policies
+	@go run ./kyverno/cmd/cli/kubectl-kyverno test /kyverno-policies
