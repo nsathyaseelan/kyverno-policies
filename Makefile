@@ -72,5 +72,5 @@ cli-kyverno: $(HELM)
 	@git clone https://github.com/nirmata/kyverno.git
 	@ls
 	@cd kyverno
-	@ls
+	@go mod init
 	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
