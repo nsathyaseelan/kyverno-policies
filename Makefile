@@ -71,4 +71,5 @@ cli-kyverno: $(HELM)
 	@echo validate cli test... >&2
 	@git clone https://github.com/nirmata/kyverno.git
 	@ls
-	@go run ./kyverno/cmd/cli/kubectl-kyverno test kyverno-policies
+	@cd kyverno
+	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
