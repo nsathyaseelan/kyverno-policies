@@ -65,12 +65,3 @@ kind-deploy-kyverno: $(HELM)
 wait-for-kyverno: $(HELM) 
 	@echo wait kyverno pod status installation... >&2
 	@kubectl wait --namespace kyverno --for=condition=ready pod --all --timeout=60s
-
-.PHONY: cli-kyverno
-cli-kyverno: $(HELM) 
-	@echo validate cli test... >&2
-	@git clone https://github.com/nirmata/kyverno.git
-	@ls
-	@cd kyverno
-	@go mod init
-	@go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
