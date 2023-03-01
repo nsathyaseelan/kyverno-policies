@@ -70,5 +70,6 @@ wait-for-kyverno: $(HELM)
 cli-kyverno: $(HELM) 
 	@echo validate cli test... >&2
 	@ls
-	@cd ../ls
+	@cd ..
+	@ls
 	@go run ../kyverno/cmd/cli/kubectl-kyverno test /kyverno-policies
