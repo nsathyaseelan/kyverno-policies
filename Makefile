@@ -64,4 +64,5 @@ kind-deploy-kyverno: $(HELM)
 .PHONY: wait-for-kyverno
 wait-for-kyverno: 
 	@echo wait kyverno pod status installation... >&2
+	@kubectl get po -A
 	@kubectl wait --namespace kyverno --for=condition=ready pod --all --timeout=60s
