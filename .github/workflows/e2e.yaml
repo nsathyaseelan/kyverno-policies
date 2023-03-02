@@ -21,7 +21,7 @@ jobs:
         run: make kind-create-cluster
       - name: Install kyverno
         run: |
-          N4K_LICENSE_KEY=${{ secrets.N4K__CI_LICENSE }} make kind-deploy-kyverno     
+          N4K_LICENSE_KEY=${{ secrets.N4K_CI_LICENSE }} make kind-deploy-kyverno     
       - name: Wait for kyverno ready
         run: make wait-for-kyverno        
       - name: Test with kuttl
