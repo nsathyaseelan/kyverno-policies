@@ -27,10 +27,11 @@ jobs:
       #     DEVOPS: ${{ secrets.N4K_LICENSE }}
       - name: Install kyverno
         run: |
-          export N4K_LICENSE_KEY="$LICENSE_KEY"
-          make kind-deploy-kyverno
-        env:
-          LICENSE_KEY: ${{ secrets.N4K_LICENSE }}      
+          N4K_LICENSE_KEY=${{ secrets.N4K_LICENSE }} make kind-deploy-kyverno
+        #  export N4K_LICENSE_KEY="$LICENSE_KEY"
+       #   make kind-deploy-kyverno
+       # env:
+        #  LICENSE_KEY: ${{ secrets.N4K_LICENSE }}      
       - name: Wait for kyverno ready
         run: make wait-for-kyverno        
       - name: Test with kuttl
