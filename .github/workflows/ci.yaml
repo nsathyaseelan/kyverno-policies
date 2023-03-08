@@ -22,7 +22,7 @@ jobs:
           repository: nirmata/kyverno
           path: kyverno
           # The target branch of a pull request or the branch/tag of a push
-          ref: release-n4k-1.9.0
+          ref: release-n4k-*
 
       - name: Set up Go 
         uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568
