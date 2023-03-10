@@ -73,7 +73,10 @@ wait-for-kyverno:
 .PHONY: get-kyverno-binary
 get-kyverno-binary: 
 	@echo wait kyverno binary status ... >&2
+	@echo $(N4K_BINARY_VERSION)
 	@curl -LO https://github.com/nirmata/kyverno/releases/download/$(N4K_BINARY_VERSION)/kyverno-cli_$(N4K_BINARY_VERSION)_linux_x86_64.tar.gz
+	@echo $(N4K_BINARY_VERSION)
+	@ls
 	@tar -xvf kyverno-cli_$(N4K_BINARY_VERSION)_linux_x86_64.tar.gz
 
 .PHONY: run-cli-test
