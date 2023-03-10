@@ -1,4 +1,4 @@
-name: Kyverno Test
+name: Kyverno CLI Test
 
 on:
   push:
@@ -13,12 +13,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  cli-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Get kyverno binary
         run: make get-kyverno-binary
-      - name: Run kyverno cli test
+      - name: Run kyverno CLI test
         run: make run-cli-test
