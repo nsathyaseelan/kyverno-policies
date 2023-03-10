@@ -7,15 +7,17 @@ on:
   pull_request:
     branches:
       - main
+      
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
-        with:
-          path: kyverno-policies
-
+        uses: actions/checkout@v3
       # - name: Clone enterprise Kyverno
       #   uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       #   with:
@@ -32,7 +34,7 @@ jobs:
       # - name: Test Policy
       #   run: go run ./cmd/cli/kubectl-kyverno test ../kyverno-policies
       #   working-directory: kyverno
-      
+
       - name: Get kyverno cli binary
         run: make get-kyverno-binary
       - name: Run kyverno cli test

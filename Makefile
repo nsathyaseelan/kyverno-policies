@@ -68,7 +68,7 @@ wait-for-kyverno:
 
 .PHONY: get-kyverno-binary
 get-kyverno-binary: 
-	@echo wait kyverno pod status installation... >&2
+	@echo wait kyverno binary status ... >&2
 	@curl -LO https://github.com/nirmata/kyverno/releases/download/v1.9.0-n4kbuild.3/kyverno-cli_v1.9.0-n4kbuild.3_linux_x86_64.tar.gz
 	@tar -xvf kyverno-cli_v1.9.0-n4kbuild.3_linux_x86_64.tar.gz
 
