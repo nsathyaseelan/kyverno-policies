@@ -66,11 +66,15 @@ wait-for-kyverno:
 	@echo wait kyverno pod status installation... >&2
 	@kubectl wait --namespace kyverno --for=condition=ready pod --all --timeout=60s
 
+#####################
+# Kyverno CLI TESTS #
+#####################
+
 .PHONY: get-kyverno-binary
 get-kyverno-binary: 
 	@echo wait kyverno binary status ... >&2
-	@curl -LO https://github.com/nirmata/kyverno/releases/download/v1.9.0-n4kbuild.3/kyverno-cli_v1.9.0-n4kbuild.3_linux_x86_64.tar.gz
-	@tar -xvf kyverno-cli_v1.9.0-n4kbuild.3_linux_x86_64.tar.gz
+	@curl -LO https://github.com/nirmata/kyverno/releases/download/$(N4K_BINARY_VERSION)/kyverno-cli_$(N4K_BINARY_VERSION)_linux_x86_64.tar.gz
+	@tar -xvf kyverno-cli_$(N4K_BINARY_VERSION)_linux_x86_64.tar.gz
 
 .PHONY: run-cli-test
 run-cli-test: 

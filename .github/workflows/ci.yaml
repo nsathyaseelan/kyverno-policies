@@ -14,11 +14,16 @@ concurrency:
 
 jobs:
   cli-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        n4k-version: [kyverno-cli_v1.9.0-n4kbuild.3_linux_x86_64.tar.gz]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Get kyverno binary
-        run: make get-kyverno-binary
+        run: |
+          N4K_BINARY_VERSION=${{ matrix.n4k-version }} make get-kyverno-binary
       - name: Run kyverno CLI test
         run: make run-cli-test
