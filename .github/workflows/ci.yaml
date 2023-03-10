@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        n4k-version: [kyverno-cli_v1.9.0-n4kbuild.3_linux_x86_64.tar.gz]
+        n4k-version: [v1.9.0-n4kbuild.3]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
