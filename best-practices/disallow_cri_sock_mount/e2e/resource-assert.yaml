@@ -1,4 +1,4 @@
-apiVersion: kyverno.io/v1
+apiVersion: v1
 kind: pod
 metadata:
   name: pod-with-docker-sock-mount
@@ -6,7 +6,7 @@ status:
   conditions:
   - phase: Running
 --- 
-apiVersion: kyverno.io/v1
+apiVersion: v1
 kind: pod
 metadata:
   name: goodpod01

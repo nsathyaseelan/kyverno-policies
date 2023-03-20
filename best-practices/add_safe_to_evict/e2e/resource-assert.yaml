@@ -13,3 +13,42 @@ metadata:
 status:
   conditions:
   - phase: Running
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod03
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.1
+    volumeMounts:
+    - mountPath: /var/local/aaa
+      name: mydir
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      readOnly: true
+  volumes:
+    - name: mydir
+      emptyDir: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod04
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.1
+    volumeMounts:
+    - mountPath: /var/local/aaa
+      name: myfile
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      readOnly: true
+  volumes:
+    - name: myfile
+      hostPath:
+        path: "/foo"
