@@ -4,7 +4,7 @@ metadata:
   name: myapp-pod03
 status:
   conditions:
-   phase: Running
+  - phase: Running
 --- 
 apiVersion: v1
 kind: pod
@@ -12,4 +12,4 @@ metadata:
   name: myapp-pod04
 status:
   conditions:
-   phase: Running
+  - phase: Running
