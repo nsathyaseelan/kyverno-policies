@@ -3,16 +3,14 @@ kind: pod
 metadata:
   name: pod-with-docker-sock-mount
 status:
-  conditions:
-  - phase: Running
+  phase: Running
 --- 
 apiVersion: v1
 kind: pod
 metadata:
   name: goodpod01
 status:
-  conditions:
-  - phase: Running
+  phase: Running
 --- 
 apiVersion: wgpolicyk8s.io/v1alpha2
 kind: PolicyReport
