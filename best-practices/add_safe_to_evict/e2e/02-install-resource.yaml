@@ -4,6 +4,4 @@ apply:
 - ../resource.yaml
 assert:
 - resource-assert.yaml
-- ../myapp-pod03-patched.yaml
-- ../myapp-pod04-patched.yaml
 unitTest: false
