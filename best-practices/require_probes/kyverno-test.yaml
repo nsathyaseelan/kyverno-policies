@@ -2,7 +2,12 @@ name: require-pod-probes
 policies:
   - require_probes.yaml
 resources:
-  - resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
+  -  resources/resource-3.yaml
+  -  resources/resource-4.yaml
+  -  resources/resource-5.yaml
+  -  resources/resource-6.yaml
 results:
   - policy: require-pod-probes
     rule: validate-probes

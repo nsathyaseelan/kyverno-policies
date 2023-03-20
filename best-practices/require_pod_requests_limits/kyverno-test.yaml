@@ -2,7 +2,11 @@ name: require-requests-limits
 policies:
   - require_pod_requests_limits.yaml
 resources:
-  - resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
+  -  resources/resource-3.yaml
+  -  resources/resource-4.yaml
+  -  resources/resource-5.yaml
 results:
   - policy: require-requests-limits
     rule: validate-resources

@@ -1,0 +1,8 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestStep
+apply:
+- ../resource.yaml
+assert:
+- ../myapp-pod03-patched.yaml
+- ../myapp-pod04-patched.yaml
+unitTest: false

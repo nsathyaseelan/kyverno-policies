@@ -2,7 +2,13 @@ name: restrict-image-registries
 policies:
   -  restrict_image_registries.yaml
 resources:
-  -  resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
+  -  resources/resource-3.yaml
+  -  resources/resource-4.yaml
+  -  resources/resource-5.yaml
+  -  resources/resource-6.yaml
+  -  resources/resource-7.yaml
 results:
   - policy: restrict-image-registries
     rule: validate-registries

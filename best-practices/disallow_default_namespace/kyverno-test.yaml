@@ -2,7 +2,10 @@ name: disallow_default_namespace
 policies:
   -  disallow_default_namespace.yaml
 resources:
-  -  resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
+  -  resources/resource-3.yaml
+  -  resources/resource-4.yaml
 results:
   # validate-namespace
   - policy: disallow-default-namespace

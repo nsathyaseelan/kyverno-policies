@@ -5,7 +5,9 @@ name: require_drop_cap_net_raw
 policies:
   - require_drop_cap_net_raw.yaml
 resources:
-  - resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
+  -  resources/resource-3.yaml
 results:
   - policy: drop-cap-net-raw
     rule: require-drop-cap-net-raw

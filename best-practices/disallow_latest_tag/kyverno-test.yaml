@@ -2,7 +2,14 @@ name: disallow_latest_tag
 policies:
   - disallow_latest_tag.yaml
 resources:
-  - resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
+  -  resources/resource-3.yaml
+  -  resources/resource-4.yaml
+  -  resources/resource-5.yaml
+  -  resources/resource-6.yaml
+  -  resources/resource-7.yaml
+  -  resources/resource-8.yaml
 results:
   # require-image-tag
   - policy: disallow-latest-tag

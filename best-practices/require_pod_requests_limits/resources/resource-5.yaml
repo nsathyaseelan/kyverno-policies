@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod03
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+  - name: nginx
+    image: nginx
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "0.5"
+      limits:
+        memory: "256Mi"

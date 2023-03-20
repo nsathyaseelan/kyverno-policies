@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod03
+spec:
+  containers:
+  - name: ghost
+    image: ghost
+  - name: busybox
+    image: busybox
+    securityContext:
+      readOnlyRootFilesystem: true

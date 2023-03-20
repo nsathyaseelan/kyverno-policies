@@ -4,7 +4,8 @@ name: require_drop_all
 policies:
   - require_drop_all.yaml
 resources:
-  - resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
 results:
   - policy: drop-all-capabilities
     rule: require-drop-all

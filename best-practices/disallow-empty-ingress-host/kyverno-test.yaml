@@ -2,7 +2,8 @@ name: disallow_empty_ingress_host
 policies:
   -  disallow_empty_ingress_host.yaml
 resources:
-  -  resource.yaml
+  -  resources/resource-1.yaml
+  -  resources/resource-2.yaml
 results:
   - policy: disallow-empty-ingress-host
     rule: disallow-empty-ingress-host

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod02
+spec:
+  containers:
+  - name: k8s-nginx
+    image: k8s.gcr.io/nginx:1.7.9
+  - name: busybox
+    image: bar.io/busybox
