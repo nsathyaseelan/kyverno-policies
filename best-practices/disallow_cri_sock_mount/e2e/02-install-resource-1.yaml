@@ -2,7 +2,6 @@ apiVersion: kuttl.dev/v1beta1
 kind: TestStep
 apply:
 - ../resources/resource-1.yaml
-- ../resources/resource-2.yaml
-# assert:
-# - resource-assert.yaml
+assert:
+- resource-assert-1.yaml
 unitTest: false
