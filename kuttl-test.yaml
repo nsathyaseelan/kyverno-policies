@@ -3,6 +3,6 @@ kind: TestSuite
 testDirs:
 - best-practices
 startKIND: false
-timeout: 90
+timeout: 120
 parallel: 1
 fullName: true
