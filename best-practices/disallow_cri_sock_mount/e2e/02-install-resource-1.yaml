@@ -1,5 +1,5 @@
 apiVersion: kuttl.dev/v1beta1
-kind: TestStep=
+kind: TestStep
 apply:
 - ../resources/resource-1.yaml
 timeout: 30
