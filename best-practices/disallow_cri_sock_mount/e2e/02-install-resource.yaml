@@ -3,6 +3,7 @@ kind: TestStep
 apply:
 - ../resources/resource-1.yaml
 - ../resources/resource-2.yaml
+timeout: 30
 assert:
 - resource-assert.yaml
 unitTest: false
