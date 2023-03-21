@@ -1,9 +1,3 @@
-apiVersion: kuttl.dev/v1beta1
-kind: TestAssert
-timeout: 30
-commands:
-- command: echo hello
----
 apiVersion: v1
 kind: pod
 metadata:
