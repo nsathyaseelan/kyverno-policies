@@ -1,3 +1,7 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestAssert
+timeout: 20  # Timeout waiting for the state
+---
 apiVersion: v1
 kind: pod
 metadata:
