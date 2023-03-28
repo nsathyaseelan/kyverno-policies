@@ -10,7 +10,7 @@ results:
   resources:
     - apiVersion: v1
       kind: Pod
-      name: pod-docker-sock-mount
+      name: pod-with-docker-sock-mount
       namespace: default
 - policy: disallow-container-sock-mounts
   result: pass
