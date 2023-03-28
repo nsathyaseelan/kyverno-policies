@@ -28,3 +28,27 @@ results:
       kind: Pod
       name: pod-with-docker-sock-mount
       namespace: default
+- policy: disallow-container-sock-mounts
+  result: pass
+  rule: validate-containerd-sock-mount
+  resources:
+    - apiVersion: v1
+      kind: Pod
+      name: goodpod01
+      namespace: default
+- policy: disallow-container-sock-mounts
+  result: pass
+  rule: validate-crio-sock-mount
+  resources:
+    - apiVersion: v1
+      kind: Pod
+      name: goodpod01
+      namespace: default
+- policy: disallow-container-sock-mounts
+  result: pass
+  rule: validate-docker-sock-mount
+  resources:
+    - apiVersion: v1
+      kind: Pod
+      name: goodpod01
+      namespace: default
