@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Prepare environment
-        run: make kind-create-cluster 
+      # - name: Prepare environment
+      #   run: make kind-create-cluster 
       - name: Install kyverno
         run: |
           N4K_LICENSE_KEY=${{ secrets.N4K_CI_LICENSE }} make kind-deploy-kyverno   
