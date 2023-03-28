@@ -61,7 +61,7 @@ kind-deploy-kyverno: $(HELM)
 	@echo Install kyverno chart... >&2
 	@echo $(N4K_LICENSE_KEY) >&2
 	@$(HELM) repo add nirmata https://nirmata.github.io/kyverno-charts
-	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=$(N4K_LICENSE_KEY)
+	@$(HELM) install kyverno --namespace kyverno --create-namespace nirmata/kyverno --set licenseManager.licenseKey=$(N4K_LICENSE_KEY) --version v1.5.13
 
 ## Check Kyverno status 
 .PHONY: wait-for-kyverno
