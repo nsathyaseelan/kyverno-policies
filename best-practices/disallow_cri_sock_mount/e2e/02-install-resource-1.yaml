@@ -2,5 +2,8 @@ apiVersion: kuttl.dev/v1beta1
 kind: TestStep
 apply:
 - ../resources/resource-1.yaml
-timeout: 30
+commands:
+- command: sleep 30
+assert:
+- resource-assert-1.yaml
 unitTest: false
