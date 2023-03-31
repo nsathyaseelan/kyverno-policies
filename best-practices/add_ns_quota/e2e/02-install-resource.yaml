@@ -5,4 +5,3 @@ apply:
 assert:
 - ../generatedLimitRange.yaml
 - ../generatedResourceQuota.yaml
-unitTest: false
