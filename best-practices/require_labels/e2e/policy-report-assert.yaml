@@ -3,43 +3,6 @@ kind: PolicyReport
 metadata:
   name: cpol-require-labels
   namespace: default
-results:
-- category: Best Practices
-  policy: require-labels
-  resources:
-  - apiVersion: v1
-    kind: Pod
-    name: badpod01
-    namespace: default
-  result: fail
-  rule: check-for-labels
-- category: Best Practices
-  policy: require-labels
-  resources:
-  - apiVersion: v1
-    kind: Pod
-    name: goodpod01
-    namespace: default
-  result: pass
-  rule: check-for-labels
-- category: Best Practices
-  policy: require-labels
-  resources:
-  - apiVersion: v1
-    kind: Pod
-    name: badpod02
-    namespace: default
-  result: fail
-  rule: check-for-labels
-- category: Best Practices
-  policy: require-labels
-  resources:
-  - apiVersion: v1
-    kind: Pod
-    name: goodpod02
-    namespace: default
-  result: pass
-  rule: check-for-labels
 summary:
   error: 0
   fail: 2
