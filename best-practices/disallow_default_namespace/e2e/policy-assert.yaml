@@ -3,7 +3,7 @@ kind: ClusterPolicy
 metadata:
   name: disallow-default-namespace
 spec:
-  validationFailureAction: enforce
+  validationFailureAction: audit
 status:
   conditions:
   - reason: Succeeded
