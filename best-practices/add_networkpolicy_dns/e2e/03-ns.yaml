@@ -4,5 +4,4 @@ apply:
 - ../resource.yaml
 assert:
 - ../generatedResource.yaml
-error:
 - notGeneratedResource.yaml
