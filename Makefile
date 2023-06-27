@@ -61,7 +61,6 @@ kind-deploy-kyverno: $(HELM)
 	@echo Install kyverno chart... >&2
 	@echo $(N4K_LICENSE_KEY) >&2
 	git clone https://github.com/nirmata/kyverno-charts.git
-	ls
 	cd kyverno-charts
 	ls
 	git fetch
