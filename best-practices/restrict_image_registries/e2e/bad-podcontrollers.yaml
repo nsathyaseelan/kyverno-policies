@@ -116,25 +116,25 @@ spec:
             image: bar.io/nginx
           - name: busybox
             image: busybox:1.35
-# ---
-# apiVersion: batch/v1
-# kind: CronJob
-# metadata:
-#   name: reqro-badcronjob03
-# spec:
-#   schedule: "*/1 * * * *"
-#   jobTemplate:
-#     spec:
-#       template:
-#         spec:
-#           restartPolicy: OnFailure
-#           initContainers:
-#           - name: k8s-nginx-init
-#             image: bar.io/nginx
-#           - name: busybox-init
-#             image: busybox:1.35
-#           containers:
-#           - name: k8s-nginx
-#             image: bar.io/nginx
-#           - name: nginx
-#             image: eu.foo.io/nginx
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reqro-badcronjob03
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: k8s-nginx-init
+            image: bar.io/nginx
+          - name: busybox-init
+            image: busybox:1.35
+          containers:
+          - name: k8s-nginx
+            image: bar.io/nginx
+          - name: nginx
+            image: eu.foo.io/nginx
