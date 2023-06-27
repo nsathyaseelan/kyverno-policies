@@ -3,4 +3,4 @@ kind: TestStep
 apply:
 - ../disallow_empty_ingress_host.yaml
 assert:
-- policy-ready.yaml
+- policy-assert.yaml
