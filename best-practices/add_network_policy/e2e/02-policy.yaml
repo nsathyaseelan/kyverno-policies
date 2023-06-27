@@ -4,4 +4,3 @@ apply:
 - ../add_network_policy.yaml
 assert:
 - policy-assert.yaml
-unitTest: false

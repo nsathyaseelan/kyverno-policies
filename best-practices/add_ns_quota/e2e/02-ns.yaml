@@ -3,5 +3,5 @@ kind: TestStep
 apply:
 - ../resource.yaml
 assert:
-- ../generatedResource.yaml
-unitTest: false
+- generatedResourceQuota.yaml
+- generatedLimitRange.yaml
