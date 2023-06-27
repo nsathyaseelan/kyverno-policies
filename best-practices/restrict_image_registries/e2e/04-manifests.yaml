@@ -11,5 +11,5 @@ apply:
   shouldFail: true
 - file: bad-pod-false.yaml
   shouldFail: true
-# - file: bad-podcontrollers.yaml
-#   shouldFail: true
+- file: bad-podcontrollers.yaml
+  shouldFail: true
