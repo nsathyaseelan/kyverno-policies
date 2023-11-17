@@ -1,0 +1,303 @@
+###### CronJobs - Bad
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob01
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob02
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob03
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+          securityContext:
+            runAsNonRoot: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob04
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+          securityContext:
+            runAsNonRoot: true
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob05
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+          - name: container02
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob06
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+          - name: container02
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob07
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+          - name: container02
+            image: busybox:1.35
+          securityContext:
+            runAsNonRoot: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob08
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+          - name: container02
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+          securityContext:
+            runAsNonRoot: true
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob09
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: true
+          - name: container02
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+          securityContext:
+            runAsNonRoot: true
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob10
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: true
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob11
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: true
+          securityContext:
+            runAsNonRoot: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob12
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: true
+          securityContext:
+            runAsNonRoot: true
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob13
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          - name: initcontainer02
+            image: busybox:1.35
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: true
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob14
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          - name: initcontainer02
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: false
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              runAsNonRoot: true
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob15
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          - name: initcontainer02
+            image: busybox:1.35
+          containers:
+          - name: container01
+            image: busybox:1.35
+          securityContext:
+            runAsNonRoot: false

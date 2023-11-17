@@ -1,0 +1,48 @@
+###### CronJobs - Bad
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob01
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            volumeMounts:
+              - name: udev
+                mountPath: /data
+          volumes:
+          - name: udev
+            hostPath:
+              path: /etc/udev
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: badcronjob02
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            volumeMounts:
+              - name: udev
+                mountPath: /data
+              - name: temp
+                mountPath: /scratch
+          volumes:
+          - name: temp
+            emptyDir: {}
+          - name: udev
+            hostPath:
+              path: /etc/udev

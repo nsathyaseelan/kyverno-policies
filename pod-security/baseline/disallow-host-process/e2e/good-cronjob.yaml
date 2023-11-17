@@ -1,0 +1,124 @@
+###### CronJobs - Good
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: goodcronjob01
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          hostNetwork: true
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: goodcronjob02
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          hostNetwork: true
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              windowsOptions:
+                hostProcess: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: goodcronjob03
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          hostNetwork: true
+          containers:
+          - name: container01
+            image: busybox:1.35
+          - name: container02
+            image: busybox:1.35
+            securityContext:
+              windowsOptions:
+                hostProcess: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: goodcronjob04
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          hostNetwork: true
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: goodcronjob05
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          hostNetwork: true
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+            securityContext:
+              windowsOptions:
+                hostProcess: false
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: goodcronjob06
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          hostNetwork: true
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          - name: initcontainer02
+            image: busybox:1.35
+            securityContext:
+              windowsOptions:
+                hostProcess: false
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              windowsOptions:
+                hostProcess: false

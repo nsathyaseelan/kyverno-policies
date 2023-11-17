@@ -1,0 +1,109 @@
+###### Pods - Bad
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod01
+spec:
+  containers:
+  - name: container01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - NET_RAW
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod02
+spec:
+  containers:
+  - name: container01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - NET_RAW
+        - SETGID
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod03
+spec:
+  containers:
+  - name: container01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - NET_RAW
+  - name: container02
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - SETGID
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod04
+spec:
+  initContainers:
+  - name: initcontainer01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - NET_RAW
+  containers:
+  - name: container01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - SETGID
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod05
+spec:
+  initContainers:
+  - name: initcontainer01
+    image: busybox:1.35
+  - name: initcontainer02
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - NET_RAW
+  containers:
+  - name: container01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - SETGID
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod06
+spec:
+  initContainers:
+  - name: initcontainer01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - NET_RAW
+  containers:
+  - name: container01
+    image: busybox:1.35
+    securityContext:
+      capabilities:
+        add:
+        - SYS_ADMIN

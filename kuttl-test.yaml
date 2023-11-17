@@ -1,7 +1,8 @@
 apiVersion: kuttl.dev/v1beta1
 kind: TestSuite
 testDirs:
-- best-practices
+#- best-practices
+- pod-security/restricted/disallow-capabilities-strict
 startKIND: false
 timeout: 90
 parallel: 1

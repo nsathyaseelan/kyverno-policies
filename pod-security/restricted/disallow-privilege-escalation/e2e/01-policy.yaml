@@ -1,0 +1,6 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestStep
+apply:
+- ../disallow-privilege-escalation.yaml
+assert:
+- policy-assert.yaml

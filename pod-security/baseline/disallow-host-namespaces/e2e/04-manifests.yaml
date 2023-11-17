@@ -1,0 +1,15 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestStep
+apply:
+- file: good-pod.yaml
+  shouldFail: false
+- file: good-deployment.yaml
+  shouldFail: false
+- file: good-cronjob.yaml
+  shouldFail: false
+- file: bad-pod.yaml
+  shouldFail: true
+- file: bad-deployment.yaml
+  shouldFail: true
+- file: bad-cronjob.yaml
+  shouldFail: true

@@ -1,0 +1,27 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestStep
+apply:
+- file: good-pod-selinux-type.yaml
+  shouldFail: false
+- file: good-deployment-selinux-type.yaml
+  shouldFail: false
+- file: good-cronjob-selinux-type.yaml
+  shouldFail: false
+- file: bad-pod-selinux-type.yaml
+  shouldFail: true
+- file: bad-deployment-selinux-type.yaml
+  shouldFail: true
+- file: bad-cronjob-selinux-type.yaml
+  shouldFail: true
+- file: good-pod-selinux-user-role.yaml
+  shouldFail: false
+- file: good-deployment-selinux-user-role.yaml
+  shouldFail: false
+- file: good-cronjob-selinux-user-role.yaml
+  shouldFail: false
+- file: bad-pod-selinux-user-role.yaml
+  shouldFail: true
+- file: bad-deployment-selinux-user-role.yaml
+  shouldFail: true
+- file: bad-cronjob-selinux-user-role.yaml
+  shouldFail: true

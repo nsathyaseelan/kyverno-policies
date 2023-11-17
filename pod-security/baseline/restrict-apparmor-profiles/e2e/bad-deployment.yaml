@@ -1,0 +1,20 @@
+###### Deployments - Bad
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: baddeployment01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/container01: unconfined
+    spec:
+      containers:
+      - name: container01
+        image: busybox:1.35

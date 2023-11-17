@@ -1,0 +1,223 @@
+###### CronJobs - Good
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob01
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob02
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+          securityContext:
+            seLinuxOptions:
+              level: "s0:c123,c456"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob03
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                level: "s0:c123,c456"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob04
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                type: container_t
+                level: "s0:c123,c456"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob05
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+          - name: container02
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                level: "s0:c123,c456"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob06
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: container01
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                type: container_t
+          - name: container02
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                level: "s0:c123,c456"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob07
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob08
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                level: "s0:c123,c456"
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob09
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                level: "s0:c123,c456"
+                type: container_t
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob10
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+          - name: initcontainer02
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                level: "s0:c123,c456"
+          containers:
+          - name: container01
+            image: busybox:1.35
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: selur-goodcronjob11
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          initContainers:
+          - name: initcontainer01
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                type: container_t
+          - name: initcontainer02
+            image: busybox:1.35
+            securityContext:
+              seLinuxOptions:
+                level: "s0:c123,c456"
+          containers:
+          - name: container01
+            image: busybox:1.35

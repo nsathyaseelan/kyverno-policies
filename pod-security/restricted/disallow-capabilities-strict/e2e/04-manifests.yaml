@@ -1,0 +1,27 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestStep
+apply:
+- file: good-cronjob-adding-capabilities.yaml
+  shouldFail: false
+- file: good-cronjob-drop-all.yaml
+  shouldFail: false
+- file: good-deployment-adding-capabilities.yaml
+  shouldFail: false
+- file: good-deployment-drop-all.yaml
+  shouldFail: false
+- file: good-pod-adding-capabilities.yaml
+  shouldFail: false
+- file: good-pod-drop-all.yaml
+  shouldFail: false
+- file: bad-cronjob-adding-capabilities.yaml
+  shouldFail: true
+- file: bad-cronjob-drop-all.yaml
+  shouldFail: true
+- file: bad-deployment-adding-capabilities.yaml
+  shouldFail: true
+- file: bad-deployment-drop-all.yaml
+  shouldFail: true
+- file: bad-pod-adding-capabilities.yaml
+  shouldFail: true
+- file: bad-pod-drop-all.yaml
+  shouldFail: true
