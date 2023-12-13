@@ -1,0 +1,21 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: disallow-host-namespaces-policy
+spec:
+  steps:
+  - name: test-disallow-host-namespaces
+    try:
+    - apply:
+        file: ../disallow-host-namespaces.yaml
+    - assert:
+        file: policy-assert.yaml
+    - script:
+        content: |
+          sed 's/validationFailureAction: audit/validationFailureAction: Enforce/' ../disallow-host-namespaces.yaml | kubectl apply -f - 
+    - assert:
+        file: enforce-policy-assert.yaml
+    - apply:
+        file: good-resource.yaml
+    - script:
+        content: ./bad-resource-test.sh
