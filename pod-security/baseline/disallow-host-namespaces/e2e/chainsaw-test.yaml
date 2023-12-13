@@ -19,3 +19,19 @@ spec:
         file: good-resource.yaml
     - script:
         content: ./bad-resource-test.sh
+    - apply:
+        file: ../remediate-disallow-host-namespaces.yaml
+    - assert:
+        file: remediation-policy-assert.yaml
+    - sleep:
+        duration: 15s
+    - assert:
+        resource:
+          apiVersion: wgpolicyk8s.io/v1alpha2
+          kind: PolicyReport
+          metadata:
+            name: cpol-disallow-host-namespaces
+          summary:
+            error: 0
+            fail: 0
+    

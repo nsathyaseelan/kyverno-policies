@@ -24,8 +24,9 @@ jobs:
       fail-fast: false
       matrix:
         tests:
-          - pod-security/baseline/disallow-capabilities/e2e
-          - pod-security/baseline/disallow-host-namespaces/e2e
+          - pod-security
+          # - pod-security/baseline/disallow-capabilities/e2e
+          # - pod-security/baseline/disallow-host-namespaces/e2e
     steps:
       - name: Checkout
         uses: actions/checkout@v3
