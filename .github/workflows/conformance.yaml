@@ -1,5 +1,4 @@
-name: Kuttl Test
-
+name: Chainsaw Test
 on:
   push:
     branches:
@@ -25,8 +24,8 @@ jobs:
       fail-fast: false
       matrix:
         tests:
-          - ^baseline/disallow-capabilities/e2e$
-          - ^baseline/disallow-host-namespaces/e2e$
+          - ^baseline/disallow-capabilities/e2e/chainsaw-test.yaml
+          - ^baseline/disallow-host-namespaces/e2e/chainsaw-test.yaml
     steps:
       - name: Checkout
         uses: actions/checkout@v3
