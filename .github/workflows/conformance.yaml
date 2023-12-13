@@ -24,8 +24,8 @@ jobs:
       fail-fast: false
       matrix:
         tests:
-          - ^baseline/disallow-capabilities/e2e/chainsaw-test.yaml
-          - ^baseline/disallow-host-namespaces/e2e/chainsaw-test.yaml
+          - baseline/disallow-capabilities/e2e/chainsaw-test.yaml
+          - baseline/disallow-host-namespaces/e2e/chainsaw-test.yaml
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -48,4 +48,4 @@ jobs:
         run: |
           set -e
           pwd
-          cd ./pod-security && pwd && chainsaw test --test-dir '^${{ matrix.tests }}'
+          cd ./pod-security && chainsaw test --test-dir '${{ matrix.tests }}'
