@@ -42,4 +42,9 @@ jobs:
         shell: bash
         run: |
           set -e
+          chainsaw version
+      - name: Test with Chainsaw
+        shell: bash
+        run: |
+          set -e
           cd pod-security && chainsaw test --include-test-regex './${{ matrix.tests }}'
