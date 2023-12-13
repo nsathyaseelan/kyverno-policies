@@ -1,0 +1,46 @@
+name: Kuttl Test
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'chainsaw-test'
+  # this action needs to read GH secret
+  # hence prevents executing on PRs from forks
+  # disabling running on PRs until we find a workaround for this
+  pull_request:
+    branches:
+      - 'main'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+  run-e2etest:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        tests:
+          - ^baseline/disallow-capabilities/e2e$
+          - ^baseline/disallow-host-namespaces/e2e$
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare environment
+        run: make kind-create-cluster 
+      - name: Install kyverno
+        run: |
+          N4K_LICENSE_KEY=${{ secrets.N4K_CI_LICENSE }} make kind-deploy-kyverno   
+      - name: Check Kyverno status
+        run: make wait-for-kyverno
+      - name: Install chainsaw
+        uses: kyverno/action-install-chainsaw@6ab03ccb2c8309b5f494fcbc78ec3a2d80cfabee # v0.1.0    
+      - name: Test with Chainsaw
+        shell: bash
+        run: |
+          set -e
+          chainsaw test --include-test-regex '^pod-security$/${{ matrix.tests }}'
