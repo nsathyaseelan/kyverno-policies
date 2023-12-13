@@ -48,4 +48,4 @@ jobs:
         run: |
           set -e
           pwd
-          cd ./pod-security && chainsaw test --test-dir '${{ matrix.tests }}'
+          chainsaw test --test-dir './${{ matrix.tests }}'
