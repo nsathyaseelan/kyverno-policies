@@ -24,8 +24,8 @@ jobs:
       fail-fast: false
       matrix:
         tests:
-          - baseline/disallow-capabilities/e2e
-          - baseline/disallow-host-namespaces/e2e
+          - pod-security/baseline/disallow-capabilities/e2e
+          - pod-security/baseline/disallow-host-namespaces/e2e
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
         run: make wait-for-kyverno
       - name: Install chainsaw
         uses: kyverno/action-install-chainsaw@6ab03ccb2c8309b5f494fcbc78ec3a2d80cfabee # v0.1.0    
-      - name: Test with Chainsaw
+      - name: check the Chainsaw Version
         shell: bash
         run: |
           set -e
