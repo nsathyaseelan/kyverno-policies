@@ -8,7 +8,7 @@ spec:
   hostPID: true
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
 ---
 apiVersion: v1
 kind: Pod
@@ -18,7 +18,7 @@ spec:
   hostIPC: true
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
 ---
 apiVersion: v1
 kind: Pod
@@ -28,7 +28,7 @@ spec:
   hostNetwork: true
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
 ---
 apiVersion: v1
 kind: Pod
@@ -40,7 +40,7 @@ spec:
   hostNetwork: true
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
 ---
 ###### Deployments - Bad
 apiVersion: apps/v1
@@ -60,7 +60,7 @@ spec:
       hostPID: true
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -79,7 +79,7 @@ spec:
       hostIPC: true
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -98,7 +98,7 @@ spec:
       hostNetwork: true
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -119,7 +119,7 @@ spec:
       hostNetwork: true
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
 ---
 ###### CronJobs - Bad
 apiVersion: batch/v1
@@ -136,7 +136,7 @@ spec:
           hostPID: true
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -152,7 +152,7 @@ spec:
           hostIPC: true
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -168,7 +168,7 @@ spec:
           hostNetwork: true
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -186,4 +186,4 @@ spec:
           hostNetwork: true
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx

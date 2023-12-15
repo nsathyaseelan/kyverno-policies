@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -20,7 +20,7 @@ metadata:
 spec:
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -34,13 +34,13 @@ metadata:
 spec:
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
         - NET_RAW
   - name: container02
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -53,14 +53,14 @@ metadata:
 spec:
   initContainers:
   - name: initcontainer01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
         - NET_RAW
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -73,16 +73,16 @@ metadata:
 spec:
   initContainers:
   - name: initcontainer01
-    image: dummyimagename
+    image: nginx
   - name: initcontainer02
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
         - NET_RAW
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -95,14 +95,14 @@ metadata:
 spec:
   initContainers:
   - name: initcontainer01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
         - NET_RAW
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -125,7 +125,7 @@ spec:
     spec:
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -147,7 +147,7 @@ spec:
     spec:
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -170,13 +170,13 @@ spec:
     spec:
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
             - NET_RAW
       - name: container02
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -198,14 +198,14 @@ spec:
     spec:
       initContainers:
       - name: initcontainer01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
             - NET_RAW
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -227,16 +227,16 @@ spec:
     spec:
       initContainers:
       - name: initcontainer01
-        image: dummyimagename
+        image: nginx
       - name: initcontainer02
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
             - NET_RAW
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -258,14 +258,14 @@ spec:
     spec:
       initContainers:
       - name: initcontainer01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
             - NET_RAW
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -285,7 +285,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
@@ -304,7 +304,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
@@ -324,13 +324,13 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
                 - NET_RAW
           - name: container02
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
@@ -349,14 +349,14 @@ spec:
           restartPolicy: OnFailure
           initContainers:
           - name: initcontainer01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
                 - NET_RAW
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
@@ -375,16 +375,16 @@ spec:
           restartPolicy: OnFailure
           initContainers:
           - name: initcontainer01
-            image: dummyimagename
+            image: nginx
           - name: initcontainer02
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
                 - NET_RAW
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
@@ -403,14 +403,14 @@ spec:
           restartPolicy: OnFailure
           initContainers:
           - name: initcontainer01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
                 - NET_RAW
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:

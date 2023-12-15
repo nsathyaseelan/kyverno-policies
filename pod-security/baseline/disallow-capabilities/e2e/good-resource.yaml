@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
 ---
 apiVersion: v1
 kind: Pod
@@ -15,7 +15,7 @@ metadata:
 spec:
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -28,13 +28,13 @@ metadata:
 spec:
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
         - DAC_OVERRIDE
   - name: container02
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -47,10 +47,10 @@ metadata:
 spec:
   initContainers:
   - name: initcontainer01
-    image: dummyimagename
+    image: nginx
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
 ---
 apiVersion: v1
 kind: Pod
@@ -59,14 +59,14 @@ metadata:
 spec:
   initContainers:
   - name: initcontainer01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
         - DAC_OVERRIDE
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
 ---
 apiVersion: v1
 kind: Pod
@@ -75,14 +75,14 @@ metadata:
 spec:
   initContainers:
   - name: initcontainer01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
         - DAC_OVERRIDE
   containers:
   - name: container01
-    image: dummyimagename
+    image: nginx
     securityContext:
       capabilities:
         add:
@@ -105,7 +105,7 @@ spec:
     spec:
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -123,7 +123,7 @@ spec:
     spec:
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -145,13 +145,13 @@ spec:
     spec:
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
             - DAC_OVERRIDE
       - name: container02
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -173,10 +173,10 @@ spec:
     spec:
       initContainers:
       - name: initcontainer01
-        image: dummyimagename
+        image: nginx
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -194,14 +194,14 @@ spec:
     spec:
       initContainers:
       - name: initcontainer01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
             - DAC_OVERRIDE
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -219,14 +219,14 @@ spec:
     spec:
       initContainers:
       - name: initcontainer01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
             - DAC_OVERRIDE
       containers:
       - name: container01
-        image: dummyimagename
+        image: nginx
         securityContext:
           capabilities:
             add:
@@ -246,7 +246,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -261,7 +261,7 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
@@ -280,13 +280,13 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
                 - DAC_OVERRIDE
           - name: container02
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
@@ -305,10 +305,10 @@ spec:
           restartPolicy: OnFailure
           initContainers:
           - name: initcontainer01
-            image: dummyimagename
+            image: nginx
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -323,14 +323,14 @@ spec:
           restartPolicy: OnFailure
           initContainers:
           - name: initcontainer01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
                 - DAC_OVERRIDE
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -345,14 +345,14 @@ spec:
           restartPolicy: OnFailure
           initContainers:
           - name: initcontainer01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:
                 - DAC_OVERRIDE
           containers:
           - name: container01
-            image: dummyimagename
+            image: nginx
             securityContext:
               capabilities:
                 add:

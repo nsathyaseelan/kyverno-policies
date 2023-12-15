@@ -10,21 +10,12 @@ spec:
         file: ../disallow-host-namespaces.yaml
     - assert:
         file: policy-assert.yaml
-    - script:
-        content: |
-          sed 's/validationFailureAction: audit/validationFailureAction: Enforce/' ../disallow-host-namespaces.yaml | kubectl apply -f - 
-    - assert:
-        file: enforce-policy-assert.yaml
-    - apply:
-        file: good-resource.yaml
-    - script:
-        content: ./bad-resource-test.sh
     - apply:
         file: ../remediate-disallow-host-namespaces.yaml
     - assert:
         file: remediation-policy-assert.yaml
     - sleep:
-        duration: 15s
+        duration: 20s
     - assert:
         resource:
           apiVersion: wgpolicyk8s.io/v1alpha2
@@ -33,5 +24,21 @@ spec:
             name: cpol-disallow-host-namespaces
           summary:
             error: 0
-            fail: 1
-    
+            fail: 0
+    - delete:
+        ref:
+          apiVersion: kyverno.io/v1
+          kind: ClusterPolicy
+          name: remediate-disallow-host-namespaces
+    - script:
+        content: |
+          sed 's/validationFailureAction: audit/validationFailureAction: Enforce/' ../disallow-host-namespaces.yaml | kubectl apply -f - 
+    - assert:
+        file: enforce-policy-assert.yaml
+    - apply:
+        file: good-resource.yaml
+    - apply:
+        expect:
+        - check:
+            ($error != null): true
+        file: bad-resource.yaml

@@ -25,6 +25,7 @@ jobs:
       matrix:
         tests:
           - pod-security
+          - rbac-best-practices
           # - pod-security/baseline/disallow-capabilities/e2e
           # - pod-security/baseline/disallow-host-namespaces/e2e
     steps:
@@ -49,4 +50,4 @@ jobs:
         run: |
           set -e
           pwd
-          chainsaw test --test-dir './${{ matrix.tests }}'
+          chainsaw test --test-dir './${{ matrix.tests }}' --cleanup-timeout 180s
