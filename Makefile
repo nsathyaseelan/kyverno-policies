@@ -1,13 +1,13 @@
 .DEFAULT_GOAL: build-all
 
 K8S_VERSION          ?= $(shell kubectl version --short | grep -i server | cut -d" " -f3 | cut -c2-)
-KIND_IMAGE           ?= kindest/node:v1.25.2
+KIND_IMAGE           ?= kindest/node:$(K8S_VERSION)
 KIND_NAME            ?= kind
 USE_CONFIG           ?= standard
 
 TOOLS_DIR                          := $(PWD)/.tools
 KIND                               := $(TOOLS_DIR)/kind
-KIND_VERSION                       := v0.17.0
+KIND_VERSION                       := v0.20.0
 HELM                               := $(TOOLS_DIR)/helm
 HELM_VERSION                       := v3.10.1
 KUTTL                              := $(TOOLS_DIR)/kubectl-kuttl
@@ -43,11 +43,16 @@ test-kuttl: $(KUTTL) ## Run kuttl tests
 	@echo Running kuttl tests... >&2
 	@$(KUTTL) test --config kuttl-test.yaml
 
+.PHONY: test-chainsaw
+test-chainsaw:  
+	@echo Running chainsaw tests... >&2
+	@chainsaw test --config .chainsaw-config.yaml --test-dir './$(CHAINSAW_TESTS)' 
+
 ## Create kind cluster
 .PHONY: kind-create-cluster
 kind-create-cluster: $(KIND) 
 	@echo Create kind cluster... >&2
-	@$(KIND) create cluster --name $(KIND_NAME) 
+	@$(KIND) create cluster --name $(KIND_NAME) --image $(KIND_IMAGE)
 
 ## Delete kind cluster
 .PHONY: kind-delete-cluster

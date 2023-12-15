@@ -23,32 +23,33 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        k8s-version: [v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
         tests:
           - pod-security/baseline
           - pod-security/restricted
           - rbac-best-practices
-          # - pod-security/baseline/disallow-capabilities/e2e
-          # - pod-security/baseline/disallow-host-namespaces/e2e
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Prepare environment
-        run: make kind-create-cluster 
+        run: K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
+
       - name: Install kyverno
         run: |
-          N4K_LICENSE_KEY=${{ secrets.N4K_CI_LICENSE }} make kind-deploy-kyverno   
+          make kind-deploy-kyverno
+
       - name: Check Kyverno status
         run: make wait-for-kyverno
+
       - name: Install chainsaw
-        uses: kyverno/action-install-chainsaw@6ab03ccb2c8309b5f494fcbc78ec3a2d80cfabee # v0.1.0    
-      - name: check the Chainsaw Version
-        shell: bash
-        run: |
-          set -e
-          chainsaw version
+        uses: kyverno/action-install-chainsaw@6ab03ccb2c8309b5f494fcbc78ec3a2d80cfabee # v0.1.0
+
+      # - name: Test with Chainsaw
+      #   shell: bash
+      #   run: |
+      #     set -e
+      #     chainsaw test --config .chainsaw-config.yaml --test-dir './${{ matrix.tests }}'
+
       - name: Test with Chainsaw
-        shell: bash
-        run: |
-          set -e
-          pwd
-          chainsaw test --config .chainsaw-config.yaml --test-dir './${{ matrix.tests }}' --no-color=false
+        run: CHAINSAW_TESTS=${{ matrix.tests }} make test-chainsaw
