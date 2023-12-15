@@ -16,6 +16,8 @@ spec:
         file: remediation-policy-assert.yaml
     - sleep:
         duration: 30s
+    - apply:
+        file: ../deployment.yaml
     - assert:
         resource:
           apiVersion: wgpolicyk8s.io/v1alpha2

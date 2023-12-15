@@ -14,6 +14,8 @@ spec:
         file: ../remediate-disallow-host-path.yaml
     - assert:
         file: remediation-policy-assert.yaml
+    - apply:
+        file: ../deployment.yaml
     - sleep:
         duration: 30s
     - assert:
