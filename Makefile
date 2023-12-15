@@ -46,7 +46,7 @@ test-kuttl: $(KUTTL) ## Run kuttl tests
 .PHONY: test-chainsaw
 test-chainsaw:  
 	@echo Running chainsaw tests... >&2
-	@chainsaw test --config .chainsaw-config.yaml --test-dir './$(CHAINSAW_TESTS)' 
+	@chainsaw test --config .chainsaw-config.yaml
 
 ## Create kind cluster
 .PHONY: kind-create-cluster

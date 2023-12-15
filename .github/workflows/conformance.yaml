@@ -25,10 +25,10 @@ jobs:
       matrix:
         k8s-version: [v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
         n4k-chart-version: [1.6.11, 3.0.9]
-        tests:
-          - pod-security/baseline
-          - pod-security/restricted
-          - rbac-best-practices
+        # tests:
+        #   - pod-security/baseline
+        #   - pod-security/restricted
+        #   - rbac-best-practices
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -53,4 +53,5 @@ jobs:
       #     chainsaw test --config .chainsaw-config.yaml --test-dir './${{ matrix.tests }}'
 
       - name: Test with Chainsaw
-        run: CHAINSAW_TESTS=${{ matrix.tests }} make test-chainsaw
+        # run: CHAINSAW_TESTS=${{ matrix.tests }} make test-chainsaw
+        run: make test-chainsaw
