@@ -17,7 +17,7 @@ spec:
     - apply:
         file: ../deployment.yaml
     - sleep:
-        duration: 30s
+        duration: 20s
     - assert:
         resource:
           apiVersion: wgpolicyk8s.io/v1alpha2

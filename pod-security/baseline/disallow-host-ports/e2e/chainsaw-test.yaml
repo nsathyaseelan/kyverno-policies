@@ -15,7 +15,7 @@ spec:
     - assert:
         file: remediation-policy-assert.yaml
     - sleep:
-        duration: 30s
+        duration: 20s
     - apply:
         file: ../deployment.yaml
     - assert:
