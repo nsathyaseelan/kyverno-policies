@@ -31,7 +31,7 @@ spec:
         ref:
           apiVersion: kyverno.io/v1
           kind: ClusterPolicy
-          name: remediate-disallow-privilege-escalation
+          name: remediate-capabilities-strict
     - script:
         content: |
           sed 's/validationFailureAction: audit/validationFailureAction: Enforce/' ../disallow-capabilities-strict.yaml | kubectl apply -f - 
