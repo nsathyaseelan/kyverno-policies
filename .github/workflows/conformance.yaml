@@ -24,6 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         k8s-version: [v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
+        n4k-chart-version: [1.6.11, 3.0.9]
         tests:
           - pod-security/baseline
           - pod-security/restricted
@@ -37,7 +38,7 @@ jobs:
 
       - name: Install kyverno
         run: |
-          make kind-deploy-kyverno
+          N4K_VERSION=${{ n4k-chart-version }} make kind-deploy-kyverno
 
       - name: Check Kyverno status
         run: make wait-for-kyverno
