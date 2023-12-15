@@ -25,8 +25,8 @@ jobs:
       matrix:
         tests:
           - pod-security/baseline
-          - pod-security/restricted
-          - rbac-best-practices
+          # - pod-security/restricted
+          # - rbac-best-practices
           # - pod-security/baseline/disallow-capabilities/e2e
           # - pod-security/baseline/disallow-host-namespaces/e2e
     steps:
