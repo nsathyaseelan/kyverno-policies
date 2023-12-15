@@ -24,7 +24,8 @@ jobs:
       fail-fast: false
       matrix:
         tests:
-          - pod-security
+          - pod-security/baseline
+          - pod-security/restricted
           - rbac-best-practices
           # - pod-security/baseline/disallow-capabilities/e2e
           # - pod-security/baseline/disallow-host-namespaces/e2e
