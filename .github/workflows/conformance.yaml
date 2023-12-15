@@ -38,7 +38,7 @@ jobs:
 
       - name: Install kyverno
         run: |
-          N4K_VERSION=${{ n4k-chart-version }} make kind-deploy-kyverno
+          N4K_VERSION=${{ matrix.n4k-chart-version }} make kind-deploy-kyverno
 
       - name: Check Kyverno status
         run: make wait-for-kyverno
