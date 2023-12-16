@@ -10,9 +10,7 @@ KIND                               := $(TOOLS_DIR)/kind
 KIND_VERSION                       := v0.20.0
 HELM                               := $(TOOLS_DIR)/helm
 HELM_VERSION                       := v3.10.1
-KUTTL                              := $(TOOLS_DIR)/kubectl-kuttl
-KUTTL_VERSION                      := v0.0.0-20230108220859-ef8d83c89156
-TOOLS                              := $(KIND) $(HELM) $(KUTTL)
+TOOLS                              := $(KIND) $(HELM)
 
 $(KIND):
 	@echo Install kind... >&2
@@ -22,10 +20,6 @@ $(HELM):
 	@echo Install helm... >&2
 	@GOBIN=$(TOOLS_DIR) go install helm.sh/helm/v3/cmd/helm@$(HELM_VERSION)
 
-$(KUTTL):
-	@echo Install kuttl... >&2
-	@GOBIN=$(TOOLS_DIR) go install github.com/kyverno/kuttl/cmd/kubectl-kuttl@$(KUTTL_VERSION)
-
 .PHONY: install-tools
 install-tools: $(TOOLS)
 
@@ -34,14 +28,9 @@ clean-tools:
 	@echo Clean tools... >&2
 	@rm -rf $(TOOLS_DIR)
 
-###############
-# KUTTL TESTS #
-###############
-
-.PHONY: test-kuttl
-test-kuttl: $(KUTTL) ## Run kuttl tests
-	@echo Running kuttl tests... >&2
-	@$(KUTTL) test --config kuttl-test.yaml
+##################
+# CHAINSAW TESTS #
+##################
 
 .PHONY: test-chainsaw
 test-chainsaw:  
