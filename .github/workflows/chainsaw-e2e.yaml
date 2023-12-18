@@ -1,4 +1,4 @@
-name: Chainsaw Test
+name: ChainSaw Test
 on:
   push:
     branches:
