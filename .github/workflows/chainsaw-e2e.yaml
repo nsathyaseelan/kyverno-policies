@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - 'chainsaw-test'
+      - chainsaw-test
   pull_request:
     branches:
       - main
-      - 'chainsaw-test'
+      - chainsaw-test
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -24,8 +24,6 @@ jobs:
         k8s-version: [v1.29.2, v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
         n4k-chart-version: [1.6.11, 3.0.18, 3.1.1]
 
-    if: ${{ matrix.k8s-version != 'v1.24.12' && matrix.k8s-version != 'v1.23.17' && !(matrix.n4k-chart-version == '3.1.1' && (matrix.k8s-version == 'v1.24.12' || matrix.k8s-version == 'v1.23.17')) }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,17 +32,21 @@ jobs:
         run: K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
       - name: Install kyverno
+        if: ${{ matrix.k8s-version != 'v1.24.12' && matrix.k8s-version != 'v1.23.17' && !(matrix.n4k-chart-version == '3.1.1' && (matrix.k8s-version == 'v1.24.12' || matrix.k8s-version == 'v1.23.17')) }}
         run: N4K_VERSION=${{ matrix.n4k-chart-version }} make kind-deploy-kyverno
 
       - name: Check Kyverno status
+        if: ${{ matrix.k8s-version != 'v1.24.12' && matrix.k8s-version != 'v1.23.17' && !(matrix.n4k-chart-version == '3.1.1' && (matrix.k8s-version == 'v1.24.12' || matrix.k8s-version == 'v1.23.17')) }}
         run: make wait-for-kyverno
 
       - name: Install chainsaw
+        if: ${{ matrix.k8s-version != 'v1.24.12' && matrix.k8s-version != 'v1.23.17' && !(matrix.n4k-chart-version == '3.1.1' && (matrix.k8s-version == 'v1.24.12' || matrix.k8s-version == 'v1.23.17')) }}
         uses: kyverno/action-install-chainsaw@v0.1.4 
 
       - name: Verify Chainsaw Installation
+        if: ${{ matrix.k8s-version != 'v1.24.12' && matrix.k8s-version != 'v1.23.17' && !(matrix.n4k-chart-version == '3.1.1' && (matrix.k8s-version == 'v1.24.12' || matrix.k8s-version == 'v1.23.17')) }}
         run: chainsaw version
 
       - name: Test with Chainsaw
+        if: ${{ matrix.k8s-version != 'v1.24.12' && matrix.k8s-version != 'v1.23.17' && !(matrix.n4k-chart-version == '3.1.1' && (matrix.k8s-version == 'v1.24.12' || matrix.k8s-version == 'v1.23.17')) }}
         run: make test-chainsaw
-
