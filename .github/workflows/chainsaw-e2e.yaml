@@ -34,6 +34,9 @@ jobs:
       - name: Prepare environment
         run: K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
+      - name: check apiVersion
+        run : ./chainsaw version
+
       - name: Install kyverno
         run: |
           N4K_VERSION=${{ matrix.n4k-chart-version }} make kind-deploy-kyverno
@@ -43,9 +46,6 @@ jobs:
 
       # - name: Install chainsaw
       #   uses: kyverno/action-install-chainsaw@6ab03ccb2c8309b5f494fcbc78ec3a2d80cfabee # v0.1.0
-        
-      - name: check apiVersion
-        run : chainsaw version
 
       - name: Test with Chainsaw
         run: make test-chainsaw
