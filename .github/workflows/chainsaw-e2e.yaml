@@ -1,31 +1,21 @@
 name: ChainSaw Test
+
 on:
   push:
     branches:
       - 'main'
       - 'chainsaw-test'
-  # this action needs to read GH secret
-  # hence prevents executing on PRs from forks
-  # disabling running on PRs until we find a workaround for this
-  pull_request:
-    branches:
-      - 'main'
-      - 'chainsaw-test'
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-  
 jobs:
   run-e2etest:
     runs-on: ubuntu-latest
-    permissions:
-      packages: read
+    
     strategy:
       fail-fast: false
-      matrix:
-        k8s-version: [v1.29.2]
-        n4k-chart-version: [3.1.1]
+      
+    matrix:
+      k8s-version: [v1.29.2, v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
+      n4k-chart-version: [1.6.11, 3.0.18, 3.1.1, devel]
 
     steps:
       - name: Checkout
@@ -35,17 +25,27 @@ jobs:
         run: K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
       - name: Install kyverno
-        run: |
-          N4K_VERSION=${{ matrix.n4k-chart-version }} make kind-deploy-kyverno
+        if: ${{ needsInstallKyverno }}
+        run: N4K_VERSION=${{ matrix.n4k-chart-version }} make kind-deploy-kyverno
+        id: installKyverno
 
       - name: Check Kyverno status
+        if: ${{ needsInstallKyverno }}
         run: make wait-for-kyverno
 
       - name: Install chainsaw
+        if: ${{ needsInstallChainsaw }}
         uses: kyverno/action-install-chainsaw@v0.1.4 
 
-      - name: verify Chanisaw Installation 
-        run : chainsaw version
+      - name: Verify Chainsaw Installation
+        if: ${{ needsInstallChainsaw }}
+        run: chainsaw version
 
       - name: Test with Chainsaw
+        if: ${{ needsInstallChainsaw }}
         run: make test-chainsaw
+
+# Define reusable conditions
+conditions:
+  needsInstallKyverno: ${{ matrix.n4k-chart-version == '1.6.11' || matrix.n4k-chart-version == '3.0.18' || (matrix.n4k-chart-version == '3.1.1' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) || (matrix.n4k-chart-version == 'devel' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) }}
+  needsInstallChainsaw: ${{ needsInstallKyverno }}

@@ -10,10 +10,10 @@ spec:
         file: ../disallow-host-process.yaml
     - assert:
         file: policy-assert.yaml
-    # - apply:
-    #     file: ../remediate-disallow-host-process.yaml
-    # - assert:
-    #     file: remediation-policy-assert.yaml
+    - apply:
+        file: ../remediate-disallow-host-process.yaml
+    - assert:
+        file: remediation-policy-assert.yaml
     - apply:
         file: ../deployment.yaml
     - sleep:
