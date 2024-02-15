@@ -42,7 +42,7 @@ jobs:
         run: make wait-for-kyverno
 
       - name: Install chainsaw
-        uses: kyverno/action-install-chainsaw@6ab03ccb2c8309b5f494fcbc78ec3a2d80cfabee # v0.1.0
+        uses: go install github.com/kyverno/chainsaw@latest
         
       - name: check apiVersion
         run : chainsaw version
