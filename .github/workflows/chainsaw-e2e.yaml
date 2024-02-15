@@ -7,16 +7,28 @@ on:
       - 'chainsaw-test'
 
 jobs:
-  run-e2etest:
+  prepare-environment:
     runs-on: ubuntu-latest
-    
+    name: Prepare Environment
+    outputs:
+      test-validation-condition: ${{ steps.check-kyverno.outputs.test-validation-condition }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check Kyverno version
+        id: check-kyverno
+        run: echo "::set-output name=test-validation-condition::${{ testValidationCondition }}"
+
+  run-e2etest:
+    needs: prepare-environment
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      
     matrix:
       k8s-version: [v1.29.2, v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
       n4k-chart-version: [1.6.11, 3.0.18, 3.1.1, devel]
-
+    if: ${{ needs.prepare-environment.outputs.test-validation-condition == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,27 +37,19 @@ jobs:
         run: K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
       - name: Install kyverno
-        if: ${{ needsInstallKyverno }}
         run: N4K_VERSION=${{ matrix.n4k-chart-version }} make kind-deploy-kyverno
-        id: installKyverno
 
       - name: Check Kyverno status
-        if: ${{ needsInstallKyverno }}
         run: make wait-for-kyverno
 
       - name: Install chainsaw
-        if: ${{ needsInstallChainsaw }}
         uses: kyverno/action-install-chainsaw@v0.1.4 
 
       - name: Verify Chainsaw Installation
-        if: ${{ needsInstallChainsaw }}
         run: chainsaw version
 
       - name: Test with Chainsaw
-        if: ${{ needsInstallChainsaw }}
         run: make test-chainsaw
 
-# Define reusable conditions
-conditions:
-  needsInstallKyverno: ${{ matrix.n4k-chart-version == '1.6.11' || matrix.n4k-chart-version == '3.0.18' || (matrix.n4k-chart-version == '3.1.1' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) || (matrix.n4k-chart-version == 'devel' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) }}
-  needsInstallChainsaw: ${{ needsInstallKyverno }}
+# Define reusable condition
+testValidationCondition: ${{ matrix.n4k-chart-version == '1.6.11' || matrix.n4k-chart-version == '3.0.18' || (matrix.n4k-chart-version == '3.1.1' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) || (matrix.n4k-chart-version == 'devel' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) }}
