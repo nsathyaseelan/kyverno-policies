@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false    
       matrix:
-        k8s-version: [v1.29.2, v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
+        k8s-version: [v1.29.2, v1.28.7, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
         n4k-chart-version: [1.6.11, 3.0.18, 3.1.1]
 
     steps:
@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Prepare environment
+        if: ${{ matrix.k8s-version != 'v1.24.12' && matrix.k8s-version != 'v1.23.17' && !(matrix.n4k-chart-version == '3.1.1' && (matrix.k8s-version == 'v1.24.12' || matrix.k8s-version == 'v1.23.17')) }}
         run: K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
       - name: Install kyverno
