@@ -7,7 +7,7 @@ USE_CONFIG           ?= standard
 
 TOOLS_DIR                          := $(PWD)/.tools
 KIND                               := $(TOOLS_DIR)/kind
-KIND_VERSION                       := v0.20.0
+KIND_VERSION                       := v0.22.0
 HELM                               := $(TOOLS_DIR)/helm
 HELM_VERSION                       := v3.10.1
 TOOLS                              := $(KIND) $(HELM)
