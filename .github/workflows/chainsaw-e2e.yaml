@@ -33,7 +33,6 @@ jobs:
     needs: prepare-environment
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
         k8s-version: ${{fromJson(needs.prepare-environment.outputs.needs-install-kyverno)}}
         n4k-chart-version: [1.6.11, 3.0.18, 3.1.1, devel]
