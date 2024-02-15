@@ -6,6 +6,9 @@ on:
       - 'main'
       - 'chainsaw-test'
 
+# Define reusable condition
+testValidationCondition: ${{ matrix.n4k-chart-version == '1.6.11' || matrix.n4k-chart-version == '3.0.18' || (matrix.n4k-chart-version == '3.1.1' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) || (matrix.n4k-chart-version == 'devel' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) }}
+
 jobs:
   prepare-environment:
     runs-on: ubuntu-latest
@@ -50,6 +53,3 @@ jobs:
 
       - name: Test with Chainsaw
         run: make test-chainsaw
-
-# Define reusable condition
-testValidationCondition: ${{ matrix.n4k-chart-version == '1.6.11' || matrix.n4k-chart-version == '3.0.18' || (matrix.n4k-chart-version == '3.1.1' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) || (matrix.n4k-chart-version == 'devel' && matrix.k8s-version in ['v1.29.2', 'v1.28.0', 'v1.27.3', 'v1.26.3', 'v1.25.8']) }}
