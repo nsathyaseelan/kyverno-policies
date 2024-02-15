@@ -12,6 +12,10 @@ jobs:
     name: Prepare Environment
     outputs:
       needs-install-kyverno: ${{ steps.check-kyverno.outputs.needs-install-kyverno }}
+    strategy:
+      matrix:
+        k8s-version: [v1.29.2, v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
+        n4k-chart-version: [1.6.11, 3.0.18, 3.1.1, devel]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,10 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-    matrix:
-      k8s-version: [v1.29.2, v1.28.0, v1.27.3, v1.26.3, v1.25.8, v1.24.12, v1.23.17]
-      n4k-chart-version: [1.6.11, 3.0.18, 3.1.1, devel]
-    if: ${{ needs.prepare-environment.outputs.needs-install-kyverno == 'true' }}
+      matrix:
+        k8s-version: ${{fromJson(needs.prepare-environment.outputs.needs-install-kyverno)}}
+        n4k-chart-version: [1.6.11, 3.0.18, 3.1.1, devel]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -42,16 +45,21 @@ jobs:
         run: K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
       - name: Install kyverno
+        if: ${{ needs.prepare-environment.outputs.needs-install-kyverno == 'true' }}
         run: N4K_VERSION=${{ matrix.n4k-chart-version }} make kind-deploy-kyverno
 
       - name: Check Kyverno status
+        if: ${{ needs.prepare-environment.outputs.needs-install-kyverno == 'true' }}
         run: make wait-for-kyverno
 
       - name: Install chainsaw
+        if: ${{ needs.prepare-environment.outputs.needs-install-kyverno == 'true' }}
         uses: kyverno/action-install-chainsaw@v0.1.4 
 
       - name: Verify Chainsaw Installation
+        if: ${{ needs.prepare-environment.outputs.needs-install-kyverno == 'true' }}
         run: chainsaw version
 
       - name: Test with Chainsaw
+        if: ${{ needs.prepare-environment.outputs.needs-install-kyverno == 'true' }}
         run: make test-chainsaw
