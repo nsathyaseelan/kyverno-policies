@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - 'chainsaw-test'
   pull_request:
     branches:
       - main
+      - 'chainsaw-test'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -45,4 +47,4 @@ jobs:
 
       - name: Test with Chainsaw
         run: make test-chainsaw
-        
+
