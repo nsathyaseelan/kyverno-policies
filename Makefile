@@ -10,7 +10,8 @@ KIND                               := $(TOOLS_DIR)/kind
 KIND_VERSION                       := v0.22.0
 HELM                               := $(TOOLS_DIR)/helm
 HELM_VERSION                       := v3.10.1
-TOOLS                              := $(KIND) $(HELM)
+CHAINSAW                           := latest
+TOOLS                              := $(KIND) $(HELM) $(CHAINSAW)
 
 $(KIND):
 	@echo Install kind... >&2
@@ -19,6 +20,10 @@ $(KIND):
 $(HELM):
 	@echo Install helm... >&2
 	@GOBIN=$(TOOLS_DIR) go install helm.sh/helm/v3/cmd/helm@$(HELM_VERSION)
+
+$(CHAINSAW):
+	@echo Install helm... >&2
+	@GOBIN=$(TOOLS_DIR) go install github.com/kyverno/chainsaw@$(CHAINSAW)
 
 .PHONY: install-tools
 install-tools: $(TOOLS)

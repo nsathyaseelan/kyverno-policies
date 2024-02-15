@@ -41,8 +41,8 @@ jobs:
       - name: Check Kyverno status
         run: make wait-for-kyverno
 
-      - name: Install chainsaw
-        run: go install github.com/kyverno/chainsaw@latest
+      # - name: Install chainsaw
+      #   uses: kyverno/action-install-chainsaw@6ab03ccb2c8309b5f494fcbc78ec3a2d80cfabee # v0.1.0
         
       - name: check apiVersion
         run : chainsaw version
