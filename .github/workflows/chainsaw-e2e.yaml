@@ -42,9 +42,9 @@ jobs:
         run: make wait-for-kyverno
 
       - name: Install chainsaw
-        uses: kyverno/action-install-chainsaw@0.1.4 
+        uses: kyverno/action-install-chainsaw@v0.1.4 
 
-      - name: verify Chanisaw Installation
+      - name: verify Chanisaw Installation 
         run : chainsaw version
 
       - name: Test with Chainsaw
