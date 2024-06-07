@@ -38,7 +38,7 @@ clean-tools:
 .PHONY: test-chainsaw
 test-chainsaw:  
 	@echo Running chainsaw tests... >&2
-	@chainsaw test --config .chainsaw-config.yaml --test-file chainsaw-test --exclude-test-regex 'chainsaw/exclude-rbac-best-practices-cel-.*' --no-color=false
+	@chainsaw test --config .chainsaw-config.yaml --test-file chainsaw-test.yaml --exclude-test-regex 'chainsaw/exclude-rbac-best-practices-cel-.*' --no-color=false
 
 .PHONY: test-chainsaw-vap
 test-chainsaw-vap:  
