@@ -38,7 +38,7 @@ clean-tools:
 .PHONY: test-chainsaw
 test-chainsaw:  
 	@echo Running chainsaw tests... >&2
-	@chainsaw test --config .chainsaw-config.yaml
+	@chainsaw test --config .chainsaw-config.yaml --test-file chainsaw-e2e.yaml
 
 .PHONY: test-chainsaw-vap
 test-chainsaw-vap:  

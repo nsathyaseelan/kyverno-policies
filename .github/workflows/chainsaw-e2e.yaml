@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - new-branch
   pull_request:
     branches:
       - main
+      - new-branch
 
 jobs:
   run-e2etest-1:
