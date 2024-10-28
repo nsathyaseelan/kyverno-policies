@@ -1,7 +1,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: remediate-capabilities-strict
+  name: remediate-disallow-capabilities-strict
   annotations:
     policies.kyverno.io/title: Remediate Capabilities Strict
     policies.kyverno.io/category: Pod Security Standards (Restricted)
