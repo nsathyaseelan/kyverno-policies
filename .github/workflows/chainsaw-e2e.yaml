@@ -100,7 +100,7 @@ jobs:
 
       - name: Prepare environment
         run: |
-          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
+          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster-vap-alpha
 
       - name: Install kyverno
         run: |
@@ -133,7 +133,7 @@ jobs:
 
       - name: Prepare environment
         run: |
-          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
+          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster-vap-beta
 
       - name: Install kyverno
         run: |
