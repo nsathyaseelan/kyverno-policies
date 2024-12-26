@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false    
       matrix:
-        k8s-version: [v1.32.0, v1.31.4, v1.30.8, v1.29.12]
+        k8s-version: [v1.32.0, v1.31.4, v1.30.8]
         n4k-chart-version: [3.0.34]    # nirmata kyverno chart version for 1.10.n4k
 
     steps:
@@ -53,7 +53,7 @@ jobs:
     strategy:
       fail-fast: false    
       matrix:
-        k8s-version: [v1.32.0, v1.31.4, v1.30.8, v1.29.12]
+        k8s-version: [v1.32.0, v1.31.4, v1.30.8]
         n4k-chart-version: [3.1.22, 3.2.8] # nirmata kyverno chart version for 1.11 and 1.12 n4k
 
     steps:
@@ -91,7 +91,7 @@ jobs:
     strategy:
       fail-fast: false    
       matrix:
-        k8s-version: [v1.32.0, v1.31.4, v1.30.8, v1.29.12]
+        k8s-version: [v1.32.0, v1.31.4, v1.30.8]
         n4k-chart-version: [3.1.22, 3.2.8] # nirmata kyverno chart version for 1.11 and 1.12 n4k
 
     steps:
@@ -100,7 +100,7 @@ jobs:
 
       - name: Prepare environment
         run: |
-          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster-vap-alpha
+          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
       - name: Install kyverno
         run: |
@@ -124,7 +124,7 @@ jobs:
     strategy:
       fail-fast: false    
       matrix:
-        k8s-version: [v1.32.0, v1.31.4, v1.30.8, v1.29.12]
+        k8s-version: [v1.32.0, v1.31.4, v1.30.8]
         n4k-chart-version: [3.1.22, 3.2.8] # nirmata kyverno chart version for 1.11 and 1.12 n4k
 
     steps:
@@ -133,7 +133,7 @@ jobs:
 
       - name: Prepare environment
         run: |
-          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster-vap-beta
+          K8S_VERSION=${{ matrix.k8s-version }} make kind-create-cluster
 
       - name: Install kyverno
         run: |
